@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+      <h1>Weather For {{ data["city"]["name"]}}, 
+        {{ data["city"]["country"] }}</h1>
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Weather</th>
+                <th>Wind</th>
+            </tr>
+            {% for item in data["list"] %}
+                <tr>
+                    <td>{{ item["dt_txt"] }}</td>
+                    <td>{{ item["main"]["temp"] }}°F</td>
+                    <td>{{ item["main"]["humidity"] }}%</td>
+                    <td>                   
+                        <img 
+                          src="https://openweathermap.org/img/wn/{{ item["weather"][0]["icon"] }}.png"
+                        >
+                      </img> 
+                        {{ item["weather"][0]["main"] }}                    
+                    </td>
+                    <td>{{ (item["wind"]["speed"]) }} mi/h ({{ item["wind"]["deg"] }} deg)</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
+
